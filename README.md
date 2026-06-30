@@ -16,24 +16,17 @@ We combine deep learning, chloroplast transcriptomics, phylogenetics, and macroe
 rps12_fern/
 ├── config.py # Global configuration
 ├── best_model.pt # Trained CNN model weights
-├── requirements.txt # Python dependencies
+├── environment.yml # Dependencies
 ├── scripts/
 │ ├── model.py # CNN architecture definition
 │ ├── train.py # Model training
 │ ├── evaluate.py # Model evaluation
+│ ├── predict_external.py # Cross-species prediction
+│ ├── shap_analysis.py # Consensus SHAP attribution (seed plants)
+│ ├── shap_analysis.py # Consensus SHAP attribution (seed plants)
 │ ├── utils.py # Utility functions
 │ ├── generate_negatives.py # Negative sample construction
 │ └──  preprocess.py # Data preprocessing
-├── predict_external.py # Cross-species prediction
-├── cross_taxon_analysis.py # Cross-taxon statistical analysis
-├── cliffs_delta.py # Effect size calculation
-├── shap_analysis.py # Consensus SHAP attribution (seed plants)
-├── shap_expansion_internal.py # Internal SHAP comparison (fern copies)
-├── fine_diff_analysis.py # Fine-scale sequence difference analysis
-├── intron_length_vs_score.py # Intron length vs. model score
-├── rna_structure_analysis_v2.py # RNA secondary structure prediction
-├── merge_pairs_with_sequences.py # Sequence association utility
-├── kuaisuyanzheng_Aa.sh # Intron retention calculation (bash)
 ├── data/
 │ ├── processed/ # Preprocessed training/val/test sets
 ├── analysis_results/ # Output figures and tables
