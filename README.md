@@ -1,88 +1,98 @@
-🧬 rps12 Fern Trans-splicing Degeneration
+# rps12_fern: Deep learning reveals repeated degeneration of chloroplast trans-splicing grammar in ferns
 
-This repository contains code and data for the study:
+[![DOI](https://zenodo.org/badge/xxxxx.svg)](https://doi.org/xxxxx)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Deep learning reveals repeated degeneration of chloroplast rps12 trans-splicing architecture in ferns
+## Overview
 
-We integrate deep learning, transcriptomics, phylogenetics, and environmental analysis to investigate the evolutionary dynamics of plastid rps12 trans-splicing systems.
+This repository contains code and data for the manuscript:
 
-📌 Overview
+**"Relaxation of conserved rps12 trans-splicing syntax is associated with climatic niche divergence in ferns"**
 
-Our study demonstrates that:
+We combine deep learning, chloroplast transcriptomics, phylogenetics, and macroecological analyses to investigate the evolutionary dynamics of rps12 trans-splicing across ferns. A three-channel convolutional neural network (CNN) trained on angiosperm plastomes reveals repeated lineage-specific degeneration of trans-splicing grammar in ferns, and transcriptomic data confirm functional impairment in low-scoring copies.
 
-rps12 trans-splicing architecture exhibits a bimodal distribution of sequence grammar states
-CNN-based models recover biologically meaningful EBS/IBS interaction signatures
-Multiple fern lineages independently evolve degenerate trans-splicing states
-Low-scoring lineages are associated with climatically marginal environments
-Transcriptomic evidence supports functional impairment of splicing in low-scoring copies
-🧠 Model Architecture
+## Repository Structure
+rps12_fern/
+├── config.py # Global configuration
+├── best_model.pt # Trained CNN model weights
+├── requirements.txt # Python dependencies
+├── scripts/
+│ ├── model.py # CNN architecture definition
+│ ├── train.py # Model training
+│ ├── evaluate.py # Model evaluation
+│ ├── utils.py # Utility functions
+│ ├── generate_negatives.py # Negative sample construction
+│ ├── preprocess.py # Data preprocessing
+│ └── plot_auc.py # ROC/AUC plot generation
+├── predict_external.py # Cross-species prediction
+├── cross_taxon_analysis.py # Cross-taxon statistical analysis
+├── cliffs_delta.py # Effect size calculation
+├── shap_analysis.py # Consensus SHAP attribution (seed plants)
+├── shap_expansion_internal.py # Internal SHAP comparison (fern copies)
+├── fine_diff_analysis.py # Fine-scale sequence difference analysis
+├── intron_length_vs_score.py # Intron length vs. model score
+├── rna_structure_analysis_v2.py # RNA secondary structure prediction
+├── merge_pairs_with_sequences.py # Sequence association utility
+├── kuaisuyanzheng_Aa.sh # Intron retention calculation (bash)
+├── data/
+│ ├── processed/ # Preprocessed training/val/test sets
+│ └── species_tree_strict_CAT.treefile # Phylogenetic tree
+├── analysis_results/ # Output figures and tables
+├── shap_results/ # SHAP attribution results
+└── README.md
 
-We train a convolutional neural network (CNN) to classify rps12 trans-splicing competence based on plastid sequence features.
+text
 
-Input: rps12 exon-intron genomic sequences
-Output: probability of canonical trans-splicing grammar
-Framework: PyTorch
-Key feature: automatic learning of EBS/IBS-like interaction patterns
-📊 Key Analyses
-1. CNN-based sequence grammar inference
-Prediction of trans-splicing competence
-Cross-taxon generalization
-2. Bimodality analysis
-Hartigan’s Dip Test confirms non-unimodal distribution
-Suggests discrete grammar states
-3. Transcriptomic validation
-IGV-based RNA-seq evidence in Haplopteris elongata
-Reduced exon–exon junction support in low-scoring copies
-4. Phylogenetic reconstruction
-Independent origins of degenerate states
-Convergent evolution across fern lineages
-5. Environmental association
-PCA of climatic variables
-Low-scoring species occupy environmental extremes
-6. SHAP interpretation
-Identification of key sequence regions driving predictions
-📁 Repository Structure
-scripts/        # CNN model and analysis pipelines
-data/           # processed exon/intron datasets
-analysis/       # downstream statistical analyses
-models/         # trained CNN model (best_model.pt)
-⚙️ Requirements
+## Dependencies
 
-Install dependencies:
+- Python ≥ 3.8
+- PyTorch ≥ 1.10
+- Biopython ≥ 1.79
+- pandas, numpy, scikit-learn, matplotlib, seaborn, scipy, captum
+- ViennaRNA (for RNA secondary structure prediction)
+- R (for ecological niche analysis)
 
+Install Python dependencies:
+```bash
 pip install -r requirements.txt
+Quick Start
+1. Data preparation
+GenBank files for angiosperm, gymnosperm, and fern plastomes are downloaded from NCBI GenBank. Extract rps12 splice pairs using the extraction script (available upon request) to generate the input CSV files placed in data/.
 
-Key packages:
-
-PyTorch
-pandas
-numpy
-scikit-learn
-matplotlib
-seaborn
-biopython
-🚀 Usage
-Train model
+2. Train the CNN model
+bash
+python scripts/generate_negatives.py
+python scripts/preprocess.py
 python scripts/train.py
-Predict sequences
-python scripts/predict.py
-Run SHAP analysis
-python scripts/shap_analysis.py
-📈 Key Results
-CNN scores show strong bimodal distribution
-Degenerate rps12 architecture evolves repeatedly
-Functional impairment confirmed by transcriptomics
-Environmental association suggests ecological structuring
-📦 Data Availability
+python scripts/evaluate.py
+3. Predict on external species
+bash
+python predict_external.py --pairs data/juelei_pairs.csv --output predict_result/juelei_predictions.csv
+4. Run downstream analyses
+bash
+# Cross-taxon comparison
+python cross_taxon_analysis.py
 
-Processed datasets used in this study are included in the data/ directory.
-Raw sequencing data are available from public repositories cited in the manuscript.
+# SHAP attribution
+python shap_expansion_internal.py
 
-📄 Citation
+# Intron length control
+python intron_length_vs_score.py
 
-If you use this code, please cite:
+# RNA secondary structure
+python rna_structure_analysis_v2.py
+Data Availability
+Chloroplast genome sequences are publicly available from NCBI GenBank (accession numbers provided in Supplementary Table SX)
 
+Transcriptomic data are available from NCBI SRA (BioProject PRJNAxxxxx)
 
-📬 Contact
+GBIF occurrence data used for ecological niche analysis are available at https://doi.org/xxxxx
 
-Corresponding author: [your email]
+Citation
+If you use this code or data, please cite:
+
+text
+[Author names]. (2025). Relaxation of conserved rps12 trans-splicing syntax 
+is associated with climatic niche divergence in ferns. [Journal name].
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
