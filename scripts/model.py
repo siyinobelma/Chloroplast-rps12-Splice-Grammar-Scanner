@@ -19,7 +19,6 @@ class SplicingCNN(nn.Module):
         e1 = x[:, 0]   # (B,4,L)
         intr = x[:, 1]
         e2 = x[:, 2]
-        # 共享卷积权重或独立？这里独立处理，也可共享
         e1 = self.pool(torch.relu(self.conv3(torch.relu(self.conv2(torch.relu(self.conv1(e1))))))).squeeze(-1)
         intr = self.pool(torch.relu(self.conv3(torch.relu(self.conv2(torch.relu(self.conv1(intr))))))).squeeze(-1)
         e2 = self.pool(torch.relu(self.conv3(torch.relu(self.conv2(torch.relu(self.conv1(e2))))))).squeeze(-1)
