@@ -12,6 +12,7 @@ This repository contains code and data for the manuscript:
 We combine deep learning, chloroplast transcriptomics, phylogenetics, and macroecological analyses to investigate the evolutionary dynamics of rps12 trans-splicing across ferns. A three-channel convolutional neural network (CNN) trained on angiosperm plastomes reveals repeated lineage-specific degeneration of trans-splicing grammar in ferns, and transcriptomic data confirm functional impairment in low-scoring copies.
 
 ## Repository Structure
+```bash
 rps12_fern/
 ├── config.py # Global configuration
 ├── best_model.pt # Trained CNN model weights
@@ -22,8 +23,7 @@ rps12_fern/
 │ ├── evaluate.py # Model evaluation
 │ ├── utils.py # Utility functions
 │ ├── generate_negatives.py # Negative sample construction
-│ ├── preprocess.py # Data preprocessing
-│ └── plot_auc.py # ROC/AUC plot generation
+│ └──  preprocess.py # Data preprocessing
 ├── predict_external.py # Cross-species prediction
 ├── cross_taxon_analysis.py # Cross-taxon statistical analysis
 ├── cliffs_delta.py # Effect size calculation
@@ -36,13 +36,10 @@ rps12_fern/
 ├── kuaisuyanzheng_Aa.sh # Intron retention calculation (bash)
 ├── data/
 │ ├── processed/ # Preprocessed training/val/test sets
-│ └── species_tree_strict_CAT.treefile # Phylogenetic tree
 ├── analysis_results/ # Output figures and tables
 ├── shap_results/ # SHAP attribution results
 └── README.md
-
-text
-
+```
 ## Dependencies
 
 - Python ≥ 3.8
@@ -53,9 +50,7 @@ text
 - R (for ecological niche analysis)
 
 Install Python dependencies:
-```bash
 pip install -r requirements.txt
-Quick Start
 1. Data preparation
 GenBank files for angiosperm, gymnosperm, and fern plastomes are downloaded from NCBI GenBank. Extract rps12 splice pairs using the extraction script (available upon request) to generate the input CSV files placed in data/.
 
@@ -82,17 +77,11 @@ python intron_length_vs_score.py
 # RNA secondary structure
 python rna_structure_analysis_v2.py
 Data Availability
-Chloroplast genome sequences are publicly available from NCBI GenBank (accession numbers provided in Supplementary Table SX)
+Chloroplast genome sequences are publicly available from NCBI GenBank (accession numbers provided in Supplementary Table S2)
 
-Transcriptomic data are available from NCBI SRA (BioProject PRJNAxxxxx)
+Transcriptomic data are available from NCBI SRA (SRR32213825)
 
 GBIF occurrence data used for ecological niche analysis are available at https://doi.org/xxxxx
 
 Citation
 If you use this code or data, please cite:
-
-text
-[Author names]. (2025). Relaxation of conserved rps12 trans-splicing syntax 
-is associated with climatic niche divergence in ferns. [Journal name].
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
