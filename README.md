@@ -23,7 +23,6 @@ rps12_fern/
 │ ├── evaluate.py # Model evaluation
 │ ├── predict_external.py # Cross-species prediction
 │ ├── shap_analysis.py # Consensus SHAP attribution (seed plants)
-│ ├── shap_analysis.py # Consensus SHAP attribution (seed plants)
 │ ├── utils.py # Utility functions
 │ ├── generate_negatives.py # Negative sample construction
 │ └──  preprocess.py # Data preprocessing
